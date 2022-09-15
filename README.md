@@ -13,6 +13,6 @@ MERN Stack
 4. To start the servers run npm start
 
 # Contribution
-Mayank Joshi: Integrated Back-end and RESTful apis.
-Prateek Sharma: Back-end Logic and Algo. 
-Naman Kumawat : Front-end.
+Mayank Joshi: Integrated Back-end and RESTful apis
+Prateek Sharma: Back-end Logic and Algo
+Naman Kumawat : Front-end
