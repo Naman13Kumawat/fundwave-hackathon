@@ -11,6 +11,7 @@ export function Chart1() {
       {
         label: "Visitors",
         data: data.map((data) => data.visits),
+        backgroundColor: "rgb(164, 96, 237,0.4)",
       },
     ],
   });

@@ -1,16 +1,17 @@
 import "./chart2.scss";
 import { Bar } from "react-chartjs-2";
 import { useState } from "react";
-import { data } from "../../data.js";
+import { data2 } from "../../data.js";
 import { Chart as ChartJS } from "chart.js/auto";
 
 export function Chart2() {
   const [chartData, setCData] = useState({
-    labels: data.map((data) => data.period_date),
+    labels: data2.map((data) => data.page),
     datasets: [
       {
         label: "Visitors",
-        data: data.map((data) => data.visits),
+        data: data2.map((data) => data.visits),
+        backgroundColor: "rgba(164, 96, 237, 0.4)",
       },
     ],
   });
