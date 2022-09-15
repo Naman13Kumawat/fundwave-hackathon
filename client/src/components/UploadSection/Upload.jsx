@@ -8,7 +8,7 @@ export function Upload() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("csv", csv);
+    formData.append("file", csv);
     try {
       const response = await axios({
         method: "post",
