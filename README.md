@@ -1,12 +1,12 @@
-#Fundwave-hackathon2022
+# Fundwave-hackathon2022
 
-#Scope
+# Scope
 Fully functional monolithic application with interactive charts build using MERN stack to display visiting analytics and statistics of given database.
 
-#Tech-stack
+# Tech-stack
 MERN Stack
 
-#How to run
+# How to run
 1. Clone the project
 2. cd into client and api
 3. run npn i
