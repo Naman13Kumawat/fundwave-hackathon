@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const routes = require('./routes/routes');
+const bodyParser = require('body-parser');
+const { urlencoded } = require("express");
 
 
 dotenv.config();
@@ -17,6 +19,8 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 //middleware
 app.use(express.json());
+app.use(express.urlencoded({extended : true}));
+app.use(bodyParser.json());
 app.use('/api/', routes);
 
 

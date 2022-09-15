@@ -11,19 +11,18 @@ exports.sendData = (req,res)=>{
         return;
     }
 
-    fs.createReadStream('../api/WebAnalyticsData.xlsx')
-  .pipe(csv())
-  .on('data', (data) => results.push(data))
-  .on('end', () => {
-    console.log(results);
-    // [
-    //   { NAME: 'Daffy Duck', AGE: '24' },
-    //   { NAME: 'Bugs Bunny', AGE: '22' }
-    // ]
-  });
-    // parse the the data to json
-    // save the data in form of objects
-    res.status(300).json(req.data);
+    // var parser = parse({columns: true}, function (err, records) {
+    //     console.log(records);
+    // });
+
+    const results = [];
+    fs.createReadStream('E://fundwave-hackathon/api/WebAnalyticsData.xlsx')
+    .pipe(csv())
+    .on('data',(data)=>results.push(data))
+    .on('end',()=>{
+        console.log(results);
+    });
+    res.status(200);
 }
 
 //yyyy-mm-dd
@@ -31,9 +30,9 @@ async function getLTM(date , page){
     try{
         let obj;
         if(page){
-         obj = await model.find({"period_type": "LTM" , "period_date" : date});   
+         obj = await Record.find({"period_type": "LTM" , "period_date" : date});   
         }else{
-            obj = await model.find({"period_type": "LTM" , "period_date" : date , "page" : page});
+            obj = await Record.find({"period_type": "LTM" , "period_date" : date , "page" : page});
         }
         if(obj) return obj.visits;
         const myArray = text.split("-");
@@ -55,9 +54,9 @@ async function getLQ(date , page){
     try{
         let obj;
         if(page){
-         obj = await model.find({"period_type": "LQ" , "period_date" : date});   
+         obj = await Record.find({"period_type": "LQ" , "period_date" : date});   
         }else{
-            obj = await model.find({"period_type": "LQ" , "period_date" : date , "page" : page});
+            obj = await Record.find({"period_type": "LQ" , "period_date" : date , "page" : page});
         }
         if(obj) return obj.visits;
         const myArray = text.split("-");
@@ -78,9 +77,9 @@ async function getLM(date){
     try{
         let obj;
         if(page){
-         obj = await model.find({"period_type": "LM" , "period_date" : date});   
+         obj = await Record.find({"period_type": "LM" , "period_date" : date});   
         }else{
-            obj = await model.find({"period_type": "LM" , "period_date" : date , "page" : page});
+            obj = await Record.find({"period_type": "LM" , "period_date" : date , "page" : page});
         } 
         if(obj) return obj.visits;
         return 0;
@@ -89,17 +88,17 @@ async function getLM(date){
     }
 }
 
-function getAll(req,res){
+exports.getAll = (req,res) => {
     let date = req.date , type = req.type , count;
     if(type=="LTM") count = getLTM(date , "");
     if(type=="LQ") count = getLQ(date , "");
     else count = getLM(date , "");
-    return res.json({
-        "data":count;
+    res.json({
+        "data":count,
     })
 }
 
-function getSeperate(req,res){
+exports.getSeperate = (req,res) => {
     let date = req.date , type = req.type;
     let pages = ["dashboard" , "careers" , "contact"]
     let counts=[];
@@ -122,6 +121,6 @@ function getSeperate(req,res){
         }
     }
     return res.json({
-        "data" : counts;
+        "data" : counts,
     })
 }
