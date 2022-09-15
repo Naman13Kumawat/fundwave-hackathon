@@ -11,3 +11,6 @@ MERN Stack
 2. cd into client and api
 3. run npn i
 4. To start the servers run npm start
+
+# Contribution
+@Naman13Kumawat : Front-end and discussion
