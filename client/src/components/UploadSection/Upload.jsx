@@ -8,18 +8,20 @@ export function Upload() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("csv", csv);
+    formData.append("file", csv);
     try {
       const response = await axios({
         method: "post",
-        url: "/api/upload/file",
+        url: "/api/",
         data: formData,
         headers: { "Content-Type": "multipart/form-data" },
       });
-      console.log(response);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
+    // const res = await axios.get('/api/');
+    // console.log(res.data);
   };
 
   const handleFileSelect = (e) => {

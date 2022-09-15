@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controller/controller');
+const controller = require('../controllers/controllers');
 
 
 //  get all 
-router.post('/api/users', controller.sendData);
+router.post('/', controller.sendData);
+router.get('/', controller.getSeperate);
+router.get('/', controller.getAll);
 //  post data
-router.get('/api/users', controller.find);
+// router.get('/api/users', controller.find);
 
 
 module.exports = router;
